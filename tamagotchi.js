@@ -42,12 +42,46 @@ class Tamagotchi {
       this.isPottyTrained = true;
     }
   }
+
+  feed(type) {
+    switch (type) {
+      case "snack":
+        this.hunger = this.hunger - 1;
+        this.happiness = this.happiness + 3;
+
+        const randomNumber = Math.random();
+
+        if (randomNumber > 0.9) {
+          console.log("Eating many snacks is not very healthy!");
+          this.isIll = true;
+        }
+        break;
+      case "meal":
+        this.hunger = this.hunger - 3;
+        break;
+
+      default:
+        console.log("You can only feed your tamagotchi a snack or a meal");
+        break;
+    }
+
+    if (this.hunger < 0) {
+      this.hunger = 0;
+    }
+  }
 }
 
 const pet = new Tamagotchi("Stinky");
 console.log(pet);
 pet.hatch();
 pet.poop();
-pet.toilet();
+pet.poop();
+pet.poop();
 console.log("How many poops so far?", pet.numberOfPoops, "poop");
+pet.toilet();
+console.log("How hungry is our pet?", pet.hunger);
+pet.feed("snack");
+pet.feed("meal");
+console.log("How hungry is our pet after eating?", pet.hunger);
+console.log("Is our pet ill?", pet.isIll);
 console.log(pet);
