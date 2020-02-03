@@ -69,6 +69,19 @@ class Tamagotchi {
       this.hunger = 0;
     }
   }
+
+  getLifeCycle() {
+    return this.lifeCycles[this.currentLifeCycle];
+  }
+
+  grow() {
+    // Grow on step unless you're already a senior
+    // Add one to the currentLifeCycle unless it is already at the maximum (this.lifeCycles.length - 1)
+    if (this.currentLifeCycle < this.lifeCycles.length - 1) {
+      console.log("They grow up so fast");
+      this.currentLifeCycle = this.currentLifeCycle + 1;
+    }
+  }
 }
 
 const pet = new Tamagotchi("Stinky");
@@ -84,4 +97,15 @@ pet.feed("snack");
 pet.feed("meal");
 console.log("How hungry is our pet after eating?", pet.hunger);
 console.log("Is our pet ill?", pet.isIll);
+console.log(`Our pet is a ${pet.getLifeCycle()}`);
+pet.grow();
+console.log(`Our pet is a ${pet.getLifeCycle()}`);
+pet.grow();
+pet.grow();
+console.log(`Our pet is a ${pet.getLifeCycle()}`);
+// If it is already a senior and we get it to grow more?
+pet.grow();
+console.log(`Our pet is a ${pet.getLifeCycle()}`);
+// Nothing changed (good)
+
 console.log(pet);
